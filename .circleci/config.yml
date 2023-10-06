@@ -38,16 +38,31 @@ jobs:
             - dist
 
 workflows:
-  version: 2.1
+  version: 2
 
   deploy_staging:
     jobs:
       - hold:
           type: approval
           name: deploy to staging?
+          filters:
+            branches:
+              only:
+                - staging
       - build:
           requires:
             - deploy to staging?
+      - deploy:
+          requires:
+            - build
+
+  deploy_prod:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - main
       - deploy:
           requires:
             - build
