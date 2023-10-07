@@ -18,7 +18,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Build Angular App
-          command: ng build --configuration production
+          command: |
+            npm install -g @angular/cli@16
+            ng build --configuration production
 
   deploy:
     docker:
