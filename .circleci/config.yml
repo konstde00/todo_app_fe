@@ -77,7 +77,7 @@ workflows:
           name: Deploy
           bucket_name: staging-todo-app-website-hosting
           requires:
-            - build
+            - Build
           context:
             - Staging_Context
 
@@ -93,6 +93,6 @@ workflows:
           name: Deploy
           bucket_name: todo-app-website-hosting
           requires:
-            - build
+            - Build
           context:
             - Prod_Context
