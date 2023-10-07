@@ -47,7 +47,7 @@ jobs:
             ls -a
             aws s3 sync dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
       - persist_to_workspace:
-          root: /workspace
+          root: .
           paths:
             - dist
 
