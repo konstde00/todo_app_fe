@@ -70,9 +70,11 @@ workflows:
               only:
                 - staging
       - build:
+          name: Build
           requires:
             - deploy to staging?
       - deploy:
+          name: Deploy
           bucket_name: staging-todo-app-website-hosting
           requires:
             - build
@@ -82,11 +84,13 @@ workflows:
   deploy_prod:
     jobs:
       - build:
+          name: Build
           filters:
             branches:
               only:
                 - main
       - deploy:
+          name: Deploy
           bucket_name: todo-app-website-hosting
           requires:
             - build
