@@ -5,13 +5,13 @@ jobs:
     docker:
       - image: cimg/node:16.20.1
     steps:
+      - attach_workspace:
+          at: .
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - attach_workspace:
-          at: .
       - run:
           name: Install Dependencies
           command: npm install
@@ -43,7 +43,9 @@ jobs:
           command: |
             aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws s3 sync /todo-app-fe/dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
+            pwd
+            ls -a
+            aws s3 sync dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
       - persist_to_workspace:
           root: /workspace
           paths:
