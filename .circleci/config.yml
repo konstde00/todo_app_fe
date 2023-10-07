@@ -29,8 +29,6 @@ jobs:
       bucket_name:
         type: string
     steps:
-      - attach_workspace:
-          at: /workspace
       - run:
           name: Deploy to S3
           command: |
