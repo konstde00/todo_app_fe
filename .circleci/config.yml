@@ -1,6 +1,7 @@
 version: 2.1
 jobs:
   build:
+    working_directory: ~/todo-app-fe
     docker:
       - image: cimg/node:16.20.1
     steps:
@@ -34,7 +35,7 @@ jobs:
           command: |
             aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws s3 sync /workspace/dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
+            aws s3 sync /todo-app-fe/dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
       - persist_to_workspace:
           root: /workspace
           paths:
