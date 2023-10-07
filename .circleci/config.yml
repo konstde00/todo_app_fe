@@ -18,11 +18,14 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
           name: Build Angular App
-          command: npm run build
+          command: ng build --configuration production
 
   deploy:
     docker:
       - image: circleci/aws-cli
+    parameters:
+      bucket_name:
+        type: string
     steps:
       - attach_workspace:
           at: /workspace
@@ -31,7 +34,7 @@ jobs:
           command: |
             aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            aws s3 sync /workspace/dist/ s3://your-s3-bucket-name/
+            aws s3 sync /workspace/dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
       - persist_to_workspace:
           root: /workspace
           paths:
@@ -53,8 +56,11 @@ workflows:
           requires:
             - deploy to staging?
       - deploy:
+          bucket_name: staging-todo-app-website-hosting
           requires:
             - build
+          context:
+            - Staging_Context
 
   deploy_prod:
     jobs:
@@ -64,5 +70,8 @@ workflows:
               only:
                 - main
       - deploy:
+          bucket_name: todo-app-website-hosting
           requires:
             - build
+          context:
+            - Prod_Context
