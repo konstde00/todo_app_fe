@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
-  aws-cli: circleci/aws-cli@4.1.1
+  aws-cli: circleci/aws-cli@4.0
 
 jobs:
   build:
@@ -44,9 +44,9 @@ jobs:
       - attach_workspace:
           at: .
       - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_DEFAULT_REGION
+          aws_access_key_id: AWS_ACCESS_KEY_ID
+          aws_secret_access_key: AWS_SECRET_ACCESS_KEY
+          region: AWS_DEFAULT_REGION
       - run:
           name: Deploy to S3
           command: |
