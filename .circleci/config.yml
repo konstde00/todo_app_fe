@@ -24,7 +24,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/aws-cli@4.1.1
+      - image: cimg/node:16.20.1
     parameters:
       bucket_name:
         type: string
