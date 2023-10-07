@@ -10,6 +10,8 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
+      - attach_workspace:
+          at: .
       - run:
           name: Install Dependencies
           command: npm install
@@ -22,6 +24,10 @@ jobs:
           command: |
             npm install -g @angular/cli@16
             ng build --configuration production
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./dist
 
   deploy:
     docker:
@@ -30,6 +36,8 @@ jobs:
       bucket_name:
         type: string
     steps:
+      - attach_workspace:
+          at: .
       - run:
           name: Deploy to S3
           command: |
