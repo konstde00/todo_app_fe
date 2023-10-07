@@ -38,13 +38,14 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
       - run:
           name: Deploy to S3
           command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
-            pwd
-            ls -a
+            aws s3 rm s3://<< parameters.bucket_name >>/ --recursive
             aws s3 sync dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
       - persist_to_workspace:
           root: .
