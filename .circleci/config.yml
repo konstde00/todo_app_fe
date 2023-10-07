@@ -40,6 +40,8 @@ jobs:
     parameters:
       bucket_name:
         type: string
+      distribution_id:
+        type: string
     steps:
       - attach_workspace:
           at: .
@@ -50,8 +52,12 @@ jobs:
       - run:
           name: Deploy to S3
           command: |
+
             aws s3 rm s3://<< parameters.bucket_name >>/ --recursive
             aws s3 sync dist/todo-app-fe/ s3://<< parameters.bucket_name >>/
+
+            aws cloudfront create-invalidation --distribution-id << parameters.distribution_id >> --paths "/*"
+
       - persist_to_workspace:
           root: .
           paths:
@@ -76,6 +82,7 @@ workflows:
       - deploy:
           name: Deploy to staging
           bucket_name: staging-todo-app-website-hosting
+          distribution_id: arn:aws:cloudfront::553440882962:distribution/E1RTIMXVYIY0E8
           requires:
             - Build
           context:
@@ -92,6 +99,7 @@ workflows:
       - deploy:
           name: Deploy to prod
           bucket_name: todo-app-website-hosting
+          distribution_id: arn:aws:cloudfront::553440882962:distribution/E30CPPVDZM1WVG
           requires:
             - Build
           context:
