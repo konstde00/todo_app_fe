@@ -22,7 +22,7 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install Dependencies
-          command: npm install
+          command: npm install --force
       - save_cache:
           paths:
             - ./node_modules
