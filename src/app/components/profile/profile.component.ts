@@ -30,8 +30,8 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) {
     // @ts-ignore
-    this.user = JSON.parse(localStorage.getItem("auth"));
-    // this.token = this.user.idToken;
+    this.user = JSON.parse(sessionStorage.getItem("auth"));
+    this.token = this.user.idToken;
     this.name = this.user.firstName + " " + this.user.lastName;
     this.formattedRoles = [];
     this.photoUrl = this.user.photoUrl;
