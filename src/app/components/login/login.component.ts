@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.authService.authState.subscribe((user) => {
       console.log(JSON.stringify(user))
       const responsePayload = this.decodeJWTToken(user.idToken);
-      // responsePayload.idToken = user.idToken;
+      responsePayload.idToken = user.idToken;
       sessionStorage.setItem("auth", JSON.stringify(responsePayload));
       this.router.navigate(['profile']);
     });

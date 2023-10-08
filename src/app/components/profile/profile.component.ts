@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   ) {
     // @ts-ignore
     this.user = JSON.parse(localStorage.getItem("auth"));
-    this.token = this.user.idToken;
+    this.token = "this.user.idToken";
     this.name = this.user.name;
     this.formattedRoles = [];
     this.photoUrl = this.user.photoUrl;
