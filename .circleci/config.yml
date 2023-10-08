@@ -94,7 +94,7 @@ workflows:
       - deploy:
           name: Deploy to staging
           bucket_name: staging-todo-app-website-hosting
-          distribution_id: E1RTIMXVYIY0E8
+          distribution_id: EC98E4IEI7YQ1
           requires:
             - Build
           context:
