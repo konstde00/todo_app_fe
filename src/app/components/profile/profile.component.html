@@ -1,0 +1,22 @@
+
+
+<div class="container">
+  <div style="display: inline-block; margin-right: 20px;">
+    <img [src]="photoUrl" alt="User Photo" height="220px" width="220px" style="border-radius: 30px;" />
+  </div>
+  <div style="display: inline-block;">
+    <form [formGroup]="profileForm" (ngSubmit)="handleNameChange()">
+      <label>
+        Name:
+        <input type="text" style="margin-left: 15px" formControlName="name" />
+      </label>
+      <button type="submit">Update name</button>
+    </form>
+    <br />
+    <br />
+    <form [formGroup]="fileForm" (ngSubmit)="uploadFile()">
+      <input type="file" formControlName="file" />
+      <button type="submit">Upload File</button>
+    </form>
+  </div>
+</div>

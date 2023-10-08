@@ -28,8 +28,8 @@
     function handleCredentialResponse(response) {
       // to decode the credential response.
       const responsePayload = decodeJWTToken(response.credential);
-      sessionStorage.setItem("loggedInUser", JSON.stringify(responsePayload));
-      window.location.href = "/dashboard";
+      sessionStorage.setItem("auth", JSON.stringify(responsePayload));
+      window.location.href = "/profile";
     }
     function handleSignout() {
       google.accounts.id.disableAutoSelect();

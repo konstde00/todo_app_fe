@@ -4,6 +4,8 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "strictPropertyInitialization": false,
+    "noUncheckedIndexedAccess": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
@@ -22,12 +24,36 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "emitDecoratorMetadata": false,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node",
+      "rx",
+      "jasmine",
+      "angular-mocks",
+      "rxjs",
+      "./node_modules/network-information-types"
+    ],
+    "paths": {
+      "@app/*": [
+        "./*"
+      ],
+      "@angular/upgrade/static": [
+        "@angular/upgrade/bundles/upgrade-static.umd.js"
+      ]
+    }
   },
   "angularCompilerOptions": {
+    "strictTemplates": true,
+    "strictInputTypes": false,
+    "strictDomEventTypes": false,
+    "strictOutputEventTypes": false,
+    "fullTemplateTypeCheck": true,
+    "importHelpers": true,
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
   }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8H10NL7RB"></script>
+  <script>
+    import {environment} from "@app/src/environments/environment";
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', [(environment.googleAnalyticsApiKey)]);
+  </script>
+
+</head>
+<body>
+<div class="login-container">
+  <h1>Login</h1>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" [(ngModel)]="username" name="username" id="username" required/>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" [(ngModel)]="password" name="password" id="password" required/>
+    </div>
+    <div class="form-group">
+      <button type="submit">Login</button>
+    </div>
+  </form>
+
+  <div class="separator">or</div>
+
+  <asl-google-signin-button type="standard" size="large" width="350"></asl-google-signin-button>
+
+</div>
+
+
+</body>
+</html>

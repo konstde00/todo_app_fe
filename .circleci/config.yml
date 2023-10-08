@@ -5,10 +5,29 @@ orbs:
   aws-cli: circleci/aws-cli@4.0
 
 jobs:
+  setup_env_variables:
+    docker:
+      - image: cimg/node:16.20.1
+    parameters:
+      env_file_name:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Setup Environment Variables
+          command: |
+            echo "export const environment = {
+              production: '${IS_FE_PRODUCTION_MODE_ENABLED}',
+              apiBaseUrl: '${API_BASE_URL}',
+              googleAnalyticsApiKey: '${GOOGLE_ANALYTICS_API_KEY}'
+            };" > << parameters.env_file_name >>
   build:
     working_directory: ~/todo-app-fe
     docker:
       - image: cimg/node:16.20.1
+    parameters:
+      env_file_name:
+        type: string
     steps:
       - attach_workspace:
           at: .
@@ -24,6 +43,8 @@ jobs:
           paths:
             - ./node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - setup_env_variables:
+          env_file_name: << parameters.env_file_name >>
       - run:
           name: Build Angular App
           command: |
@@ -77,6 +98,7 @@ workflows:
                 - staging
       - build:
           name: Build
+          env_file_name: ./src/environments/environment.staging.ts
           requires:
             - deploy to staging?
       - deploy:
@@ -92,6 +114,7 @@ workflows:
     jobs:
       - build:
           name: Build
+          env_file_name: ./src/environments/environment.staging.ts
           filters:
             branches:
               only:
