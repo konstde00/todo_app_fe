@@ -38,4 +38,15 @@ export class UserService implements OnInit {
       password: password
     });
   }
+
+  initPasswordReset(email: string) {
+    return this.http.post(environment.apiUrl + "/api/account/reset-password/init?mail=" + email, {});
+  }
+
+  finishPasswordReset(newPassword: string, verificationCode: string) {
+    return this.http.post(environment.apiUrl + "/api/account/reset-password/finish", {
+      key: verificationCode,
+      newPassword: newPassword,
+    });
+  }
 }

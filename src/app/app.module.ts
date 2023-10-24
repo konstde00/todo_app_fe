@@ -40,6 +40,8 @@ import {UserService} from "@app/src/app/services/user.service";
 import {AuthenticatedGuard} from "@app/src/app/services/guards/authenticated.guard";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { RegistrationComponent } from '@app/src/app/components/registration/registration.component';
+import { PasswordResetInitComponent } from '@app/src/app/components/password-reset-init/password-reset-init.component';
+import { PasswordResetFinishComponent } from '@app/src/app/components/password-reset-finish/password-reset-finish.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { RegistrationComponent } from '@app/src/app/components/registration/regi
     AnalyticsComponent,
     NavbarComponent,
     AdminPanelComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PasswordResetInitComponent,
+    PasswordResetFinishComponent
   ],
   imports: [
     BrowserModule,

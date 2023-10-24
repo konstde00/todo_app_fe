@@ -13,10 +13,16 @@ import {AdminPanelComponent} from "@app/src/app/components/admin-panel/admin-pan
 import {AdminPanelGuard} from "@app/src/app/services/guards/admin-panel.guard";
 import {AuthenticatedGuard} from "@app/src/app/services/guards/authenticated.guard";
 import {RegistrationComponent} from "@app/src/app/components/registration/registration.component";
+import {PasswordResetInitComponent} from "@app/src/app/components/password-reset-init/password-reset-init.component";
+import {
+  PasswordResetFinishComponent
+} from "@app/src/app/components/password-reset-finish/password-reset-finish.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'password-reset/init', component: PasswordResetInitComponent },
+  { path: 'password-reset/finish', component: PasswordResetFinishComponent },
   { path: 'tasks', component: TabsComponent, canActivate: [AuthenticatedGuard], children: [
       { path: '', redirectTo: 'not_started', pathMatch: 'full'},
       { path: ':status', component: ListComponent, canActivate: [AuthenticatedGuard]}
