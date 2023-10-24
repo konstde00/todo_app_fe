@@ -16,17 +16,50 @@ import {GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig} 
 import { HttpClientModule } from '@angular/common/http';
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AnalyticsComponent } from '@app/src/app/components/analytics/analytics.component';
+import {httpInterceptorProviders} from "@app/src/app/services/request-interceptor.service";
+import {AuthService} from "@app/src/app/services/authentication.service";
+import {NgChartsModule} from "ng2-charts";
+import {AnalyticsService} from "@app/src/app/services/analytics.service";
+import { NavbarComponent } from '@app/src/app/components/navbar/navbar.component';
+import {CreateTaskComponent} from "@app/src/app/components/create-task/create-task.component";
+import {HeaderComponent} from "@app/src/app/components/header/header.component";
+import {ItemComponent} from "@app/src/app/components/item/item.component";
+import {ListComponent} from "@app/src/app/components/list/list.component";
+import {TabsComponent} from "@app/src/app/components/tabs/tabs.component";
+import {TaskService} from "@app/src/app/services/task.service";
+import {MatTableModule} from "@angular/material/table";
+import {MatInputModule} from "@angular/material/input";
+import {CdkDrag, CdkDragHandle, CdkDropList} from "@angular/cdk/drag-drop";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
+import {AnalyticsGuard} from "@app/src/app/services/guards/analytics.guard";
+import { AdminPanelComponent } from '@app/src/app/components/admin-panel/admin-panel.component';
+import {AdminPanelGuard} from "@app/src/app/services/guards/admin-panel.guard";
+import {UserService} from "@app/src/app/services/user.service";
+import {AuthenticatedGuard} from "@app/src/app/services/guards/authenticated.guard";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { RegistrationComponent } from '@app/src/app/components/registration/registration.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateTaskComponent,
+    HeaderComponent,
+    ItemComponent,
+    ListComponent,
     LoginComponent,
     ProfileComponent,
     ErrorComponent,
     UserCardComponent,
     TasksListComponent,
     TaskComponent,
-    PaginationComponent
+    TabsComponent,
+    PaginationComponent,
+    AnalyticsComponent,
+    NavbarComponent,
+    AdminPanelComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -39,8 +72,25 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ToastrModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
+    NgChartsModule,
+    MatTableModule,
+    MatInputModule,
+    CdkDropList,
+    MatIconModule,
+    CdkDragHandle,
+    CdkDrag,
+    MatSelectModule,
+    MatButtonToggleModule,
   ],
   providers: [
+    AuthService,
+    TaskService,
+    AnalyticsService,
+    UserService,
+    AnalyticsGuard,
+    AdminPanelGuard,
+    AuthenticatedGuard,
+    httpInterceptorProviders,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

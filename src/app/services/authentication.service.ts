@@ -1,84 +1,34 @@
-import { Inject, Injectable } from '@angular/core';
-import * as ngRedux from 'ng-redux';
-import { IEventManager } from '../components/eventManager/eventManager';
-import { AngularNames, Events, Names } from '../constants';
-import { AuthenticationActions } from '../store/actions/authenticationActions';
-import { StorageService, StorageType } from './storage.service';
-
-export interface IAuthorizationData {
-  token: string;
-  id: number;
-  expiresAt: number;
-  credentialsExpired?: boolean;
-  tokenExpired?: boolean;
-}
-
-export interface IOriginalOptionalFeature {
-  globalStateName: string;
-  active: boolean;
-}
-export interface IOriginalOptionalFeatures {
-  [featureName: string]: IOriginalOptionalFeature;
-}
+import { Injectable } from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {StorageService} from "@app/src/app/services/storage.service";
+import {FeatureFlagEnum} from "@app/src/app/models/feature-flags.model";
 
 @Injectable()
-export class AuthenticationService {
+export class AuthService {
 
-  constructor(@Inject(AngularNames.ngRedux) private $ngRedux: ngRedux.INgRedux,
-              private storageService: StorageService,
-              private eventManager: IEventManager) { }
+  constructor(private http: HttpClient,
+              private storageService: StorageService) {
+  }
 
-    private returnOriginalOptionalFeatures(features: IOriginalOptionalFeatures | null) {
-      for (let feature in features) {
-        if (features) {
-          this.storageService.setValue(features[feature].globalStateName, features[feature].active, StorageType.Local);
-        }
-        let payload = {
-          feature: feature,
-          active: features[feature].active
-        };
-        this.eventManager.publish(Events.featureChanged, payload);
-      }
-    }
+  login(username: String, password: String ) {
+    return this.http.post("http://localhost:8080/api/authenticate/email", {
+      username: username,
+      password: password,
+      rememberMe: true
+    });
+  }
 
-    get() {
-      return this.storageService.getValue<IAuthorizationData>(Names.GlobalStateKeys.authorization, StorageType.Session);
-    }
+  isAccessToAnalyticsAllowed() {
+    return this.storageService.getUser().featureFlags !== null && this.storageService.getUser().featureFlags !== undefined
+    && this.storageService.getUser().featureFlags.includes(FeatureFlagEnum.ANALYTICS)
+  }
 
-  set(authorizationData: IAuthorizationData | null) {
-      this.clear();
-      return this.storageService.setValue<IAuthorizationData>(Names.GlobalStateKeys.authorization, authorizationData, StorageType.Session);
-    }
+  isAccessToAdminPanelAllowed() {
+    return this.storageService.getUser().autorities !== null && this.storageService.getUser().authorities !== undefined
+    && this.storageService.getUser().authorities.includes("ROLE_ADMIN")
+  }
 
-    clear() {
-      this.storageService.removeValue(Names.GlobalStateKeys.orignalAuthorization, StorageType.Session);
-      this.storageService.removeValue(Names.GlobalStateKeys.originalOptionalFeatures, StorageType.Session);
-      this.storageService.removeValue(Names.GlobalStateKeys.authorization, StorageType.Local);
-      return this.storageService.removeValue(Names.GlobalStateKeys.authorization, StorageType.Session);
-    }
-
-  setOriginalAuth(authorizationData: IAuthorizationData | null) {
-      this.storageService.setValue<IAuthorizationData>(Names.GlobalStateKeys.orignalAuthorization, authorizationData, StorageType.Session);
-    }
-
-    setOriginalOptionalFeatures(features: IOriginalOptionalFeatures) {
-      this.storageService.setValue(Names.GlobalStateKeys.originalOptionalFeatures, features, StorageType.Session);
-    }
-
-    returnToOriginalAuth = () => {
-      let original = this.storageService.getValue<IAuthorizationData>(Names.GlobalStateKeys.orignalAuthorization, StorageType.Session);
-      let features = this.storageService.getValue<IOriginalOptionalFeatures>(Names.GlobalStateKeys.originalOptionalFeatures, StorageType.Session);
-      this.returnOriginalOptionalFeatures(features);
-      this.clear();
-      this.set(original);
-      this.$ngRedux.dispatch(AuthenticationActions.userLogout(null));
-    }
-
-    setId(authorizationId: number) {
-      return this.storageService.setValue<number>(Names.GlobalStateKeys.authorizationId, authorizationId, StorageType.Session);
-    }
-
-    getId() {
-      return this.storageService.getValue<number>(Names.GlobalStateKeys.authorizationId, StorageType.Session);
-    }
+  logout() {
+    this.storageService.clear();
+  }
 }

@@ -1,5 +1,5 @@
 import {mock} from 'angular';
-import {EventAction} from "@app/components/eventManager/EventAction";
+import {EventAction} from "@app/components/event-manager/EventAction";
 
 'use strict';
 

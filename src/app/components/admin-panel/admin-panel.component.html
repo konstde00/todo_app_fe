@@ -1,0 +1,56 @@
+
+<app-navbar></app-navbar>
+
+
+
+<div class="mat-elevation-z8" style="margin-left: 50px; margin-top: 50px; margin-right: 50px">
+
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search ">
+    </mat-form-field>
+
+    <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="login">
+            <mat-header-cell *matHeaderCellDef> Login </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                {{element.login}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="first_name">
+            <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                {{element.firstName}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="last_name">
+            <mat-header-cell *matHeaderCellDef> Last name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                {{element.lastName}}
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="feature_flags">
+            <mat-header-cell *matHeaderCellDef> Available features </mat-header-cell>
+            <mat-cell *matCellDef="let element" >
+                <mat-select [(value)]="element.featureFlags" multiple >
+                    <mat-option *ngFor="let featureFlag of featureFlags" [value]="featureFlag.value" (onSelectionChange)="updateAvailableFeatures($event, element)">
+                        {{featureFlag.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+
+    <mat-paginator [length]="totalElements"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[1, 2, 5, 25]"
+                   (page)="onPageChange($event)"
+                   aria-label="Select page">
+    </mat-paginator>
+</div>

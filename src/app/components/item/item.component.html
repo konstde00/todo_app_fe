@@ -1,0 +1,15 @@
+<a cdkDrag style="cursor: pointer" class="list-group-item list-group-item-action"
+   (mouseenter)="onMouseEnter()"
+   (mouseleave)="onMouseLeave()"
+   [ngClass]="{active: mouseOn}"
+>
+  <div class="custom-placeholder" *cdkDragPlaceholder></div>
+  <div class="d-flex w-100 justify-content-between">
+    <h5 class="mb-1"> {{ task.title }}</h5>
+  </div>
+  <div>
+    <button *ngIf="task.status !== Status.NOT_STARTED" class="btn btn-danger" (click)="onAssign('NOT_STARTED')">Not started</button>
+    <button *ngIf="task.status !== Status.IN_PROGRESS" class="btn btn-warning" (click)="onAssign('IN_PROGRESS')">In progress</button>
+    <button *ngIf="task.status !== Status.COMPLETED" class="btn btn-success" (click)="onAssign('COMPLETED')">Completed</button>
+  </div>
+</a>

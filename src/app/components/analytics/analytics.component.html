@@ -1,0 +1,35 @@
+<app-navbar></app-navbar>
+
+<div style="margin-left: 30px; margin-top: 30px;">
+
+    <div style="display: block">
+        <p>Tasks percentage by status</p>
+        <canvas baseChart
+                [type]="'doughnut'"
+                [datasets]="pieChartDatasets"
+                [labels]="pieChartLabels"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+        </canvas>
+    </div>
+
+
+    <div style="margin-top: 50px">
+        <p>Tasks amount by priority</p>
+        <div class="chart-row">
+            <div *ngFor="let item of statusByPriority.items">
+                <div class="chart-item">
+                    <h3>{{ formatPriority(item.priority) }}</h3>
+                    <canvas baseChart
+                            [datasets]="getBarChartData(item)"
+                            [labels]="getBarChartLabels(item)"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

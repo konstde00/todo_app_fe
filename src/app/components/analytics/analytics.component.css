@@ -1,0 +1,8 @@
+.chart-row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.chart-item {
+    margin-right: 20px; /* Adjust the margin as needed for spacing between items */
+}

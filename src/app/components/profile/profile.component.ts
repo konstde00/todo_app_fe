@@ -3,8 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {AuthenticationService} from "@app/src/app/services/authentication.service";
-declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
+declare var handleSignout: any;
 
 @Component({
   selector: "app-profile",
@@ -31,7 +30,7 @@ export class ProfileComponent implements OnInit {
   ) {
     // @ts-ignore
     this.user = JSON.parse(sessionStorage.getItem("auth"));
-    this.token = this.user.idToken;
+    this.token = this.user.token;
     this.name = this.user.firstName + " " + this.user.lastName;
     this.formattedRoles = [];
     this.photoUrl = this.user.photoUrl;

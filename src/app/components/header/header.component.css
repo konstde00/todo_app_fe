@@ -1,0 +1,16 @@
+.nav-link.active {
+    background-color: lightgrey;
+    border-radius: 20px;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}
+
+.nav-link {
+    border-radius: 20px;
+    color: black;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+}

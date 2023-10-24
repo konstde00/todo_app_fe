@@ -1,0 +1,58 @@
+<app-navbar> </app-navbar>
+
+<div style="margin-top: 30px; margin-left: 30px">
+
+  <app-header> </app-header>
+
+  <div style="margin-top: 30px">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+      <li class="nav-item" role="presentation" >
+        <button class="nav-link" id="ns-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane"
+                aria-selected="false"
+                routerLink="/tasks/not_started"
+                routerLinkActive="active"
+        >Not started</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ip-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane"
+                aria-selected="false"
+                routerLink="/tasks/in_progress"
+                routerLinkActive="active"
+        >In progress</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cp-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane"
+                aria-selected="false"
+                routerLink="/tasks/completed"
+                routerLinkActive="active"
+        >Completed</button>
+      </li>
+
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cs-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                type="button" role="tab" aria-controls="home-tab-pane"
+                aria-selected="false"
+                routerLink="/tasks/cancelled"
+                routerLinkActive="active"
+        >Cancelled</button>
+      </li>
+    </ul>
+
+  </div>
+
+  <div class="mat-elevation-z8">
+
+    <router-outlet>
+
+    </router-outlet>
+
+  </div>
+
+</div>

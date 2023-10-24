@@ -1,0 +1,53 @@
+
+<div class="mat-elevation-z8">
+
+  <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8"
+         cdkDropList
+         [cdkDropListData]="dataSource"
+         (cdkDropListDropped)="onPositionUpdate($event)">
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.title}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+        <mat-select [(value)]="element.priority">
+          <mat-option *ngFor="let priority of priorities" [value]="priority.value" (onSelectionChange)="updatePriority($event, element)">
+            {{priority.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element" >
+        <mat-select [(value)]="element.status">
+          <mat-option *ngFor="let status of statuses" [value]="status.value" (onSelectionChange)="updateStatus($event, element)">
+            {{status.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag [cdkDragData]="row"></mat-row>
+  </mat-table>
+
+  <mat-paginator [length]="totalElements"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[2, 5, 25]"
+                 (page)="onPageChange($event)"
+                 aria-label="Select page">
+  </mat-paginator>
+</div>

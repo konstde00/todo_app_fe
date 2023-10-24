@@ -1,13 +1,19 @@
-export class Task {
-    id: number;
-    title: string;
-    description: string;
-    // Add other properties as needed
+import {TaskStatusEnum} from "@app/src/app/models/task-status-enum.model";
+import {TaskPriorityEnum} from "@app/src/app/models/task-priority-enum.model";
 
+export class TaskModel {
 
-  constructor(id: number, title: string, description: string) {
-    this.id = id;
-    this.title = title;
+  id: number;
+  title: string;
+  position: number;
+  description?: string;
+  status: TaskStatusEnum;
+  priority: TaskPriorityEnum;
+
+  constructor(name: string, description: string, priority: TaskPriorityEnum, status: TaskStatusEnum) {
+    this.title = name;
+    this.status = status;
+    this.priority = priority;
     this.description = description;
   }
 }

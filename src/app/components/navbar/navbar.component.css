@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;        /* Use flexbox layout */
+    justify-content: flex-end; /* Align buttons to the right, you can change this if needed */
+    align-items: center;  /* Vertically center items in the navbar */
+    background-color: #333; /* Set a background color for the navbar */
+    padding: 10px;       /* Add padding to create space around the buttons */
+    height: 50px;
+}
+
+.navbar-list {
+    list-style: none;     /* Remove bullet points from the list */
+    margin: 0;            /* Remove margin */
+    padding: 0;           /* Remove padding */
+    display: flex;        /* Use flexbox layout for the list */
+}
+
+.navbar-item {
+    margin-right: 40px;   /* Add spacing between buttons (adjust as needed) */
+}
+
+.navbar-item a {
+    text-decoration: none; /* Remove underline from anchor links */
+    color: #fff;          /* Set text color for the links */
+}
+
+li:last-child {
+    margin-left: 1200px;
+}

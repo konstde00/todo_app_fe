@@ -1,0 +1,22 @@
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+small {
+  color: red;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+
+.btn.btn-primary {
+  border-radius: 20px;
+  color: black;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background-color: white;
+  border: 1px solid black;
+}

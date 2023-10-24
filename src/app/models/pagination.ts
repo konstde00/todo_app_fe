@@ -1,4 +1,4 @@
-export interface IRulePaginationV3 {
+export interface Pagination {
     totalCount: number;
     totalPageCount: number;
     pageSize: number;

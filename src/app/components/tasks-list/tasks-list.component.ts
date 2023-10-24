@@ -1,7 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import { TaskService } from '../../services/task.service';
-import { Task } from '../../models/task.model';
-import {IRulePaginationV3} from "@app/src/app/models/pagination";
+import {TaskService} from '../../services/task.service';
+import {Pagination} from "@app/src/app/models/pagination";
+import {TaskModel} from "@app/src/app/models/task.model";
+import {TaskStatusEnum} from "@app/src/app/models/task-status-enum.model";
+import {TaskPriorityEnum} from "@app/src/app/models/task-priority-enum.model";
 
 @Component({
   selector: 'app-task-list',
@@ -9,11 +11,11 @@ import {IRulePaginationV3} from "@app/src/app/models/pagination";
   styleUrls: ['tasks-list.component.css']
 })
 export class TasksListComponent implements OnInit, OnDestroy {
-  tasks: Task[] = [new Task(1, 'Task 1', 'Desc')];
+  tasks: TaskModel[] = [];
   currentPage = 1;
   pageSize = 10;
 
-  @Input() pagination: IRulePaginationV3;
+  @Input() pagination: Pagination;
 
   constructor(private taskService: TaskService) {}
 
@@ -22,7 +24,7 @@ export class TasksListComponent implements OnInit, OnDestroy {
   }
 
   loadTasks() {
-    this.tasks = this.taskService.getTasks(this.currentPage, this.pageSize);
+    // this.tasks = this.taskService.getTasks("NOT_STARTED", this.currentPage, this.pageSize);
   }
 
   onPageChange(page: number) {
