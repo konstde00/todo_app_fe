@@ -30,14 +30,6 @@ jobs:
             - ./node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Setup Environment Variables
-          command: |
-            echo "export const environment = {
-              production: '${IS_FE_PRODUCTION_MODE_ENABLED}',
-              apiHost: '${API_BASE_URL}',
-              googleAnalyticsApiKey: '${GOOGLE_ANALYTICS_API_KEY}'
-            };" > << parameters.env_file_name >>
-      - run:
           name: Build Angular App
           command: |
             npm install -g @angular/cli@16
