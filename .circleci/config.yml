@@ -12,6 +12,8 @@ jobs:
     parameters:
       env_file_name:
         type: string
+      ng_configuration_name:
+        type: string
     steps:
       - attach_workspace:
           at: .
@@ -39,7 +41,7 @@ jobs:
           name: Build Angular App
           command: |
             npm install -g @angular/cli@16
-            ng build --configuration production
+            ng build --configuration << parameters.ng_configuration_name >>
       - persist_to_workspace:
           root: .
           paths:
@@ -89,6 +91,7 @@ workflows:
       - build:
           name: Build
           env_file_name: ./src/environments/environment.staging.ts
+          ng_configuration_name: production
           requires:
             - deploy to staging?
       - deploy:
@@ -105,6 +108,7 @@ workflows:
       - build:
           name: Build
           env_file_name: ./src/environments/environment.staging.ts
+          ng_configuration_name: production
           filters:
             branches:
               only:
