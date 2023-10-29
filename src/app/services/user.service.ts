@@ -18,33 +18,33 @@ export class UserService implements OnInit {
   }
 
   syncWithIdp(token: string) {
-    return this.http.patch(environment.apiUrl + "/api/users/sync-with-idp?token=" + token, {});
+    return this.http.patch(environment.apiHost + "/api/users/sync-with-idp?token=" + token, {});
   }
 
   getUsers(search: string =  "", currentPage: number = 0, pageSize: number = 10): Observable<PaginatedUsers> {
 
-    return this.http.get<PaginatedUsers>("http://localhost:8080/api/admin/users?search=" + search
+    return this.http.get<PaginatedUsers>(`${environment.apiHost}/api/admin/users?search=` + search
         + "&pageNumber=" + currentPage + "&pageSize=" + pageSize);
   }
 
   updateAvailableFeatures(userId: string, featureFlagId: string, isSelected: boolean) {
-    return this.http.patch(environment.apiUrl + "/api/admin/v1/feature-flag?userId=" + userId
+    return this.http.patch(`${environment.apiHost}/api/admin/v1/feature-flag?userId=` + userId
       + "&featureFlagId=" + featureFlagId + "&isSelected=" + isSelected, {});
   }
 
-  register(login: string, password: string) {
-    return this.http.post(environment.apiUrl + "/api/admin/users", {
-      login: login,
+  register(email: string, password: string) {
+    return this.http.post(environment.apiHost + "/api/admin/users", {
+      email: email,
       password: password
     });
   }
 
   initPasswordReset(email: string) {
-    return this.http.post(environment.apiUrl + "/api/account/reset-password/init?mail=" + email, {});
+    return this.http.post(`${environment.apiHost}/api/account/reset-password/init?mail=` + email, {});
   }
 
   finishPasswordReset(newPassword: string, verificationCode: string) {
-    return this.http.post(environment.apiUrl + "/api/account/reset-password/finish", {
+    return this.http.post(`${environment.apiHost}//api/account/reset-password/finish`, {
       key: verificationCode,
       newPassword: newPassword,
     });

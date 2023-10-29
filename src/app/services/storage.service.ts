@@ -17,6 +17,12 @@ export class StorageService {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
+  public updateImageUrl(imageUrl: string): void {
+    const user = this.getUser();
+    user.imageUrl = imageUrl;
+    this.saveUser(user);
+  }
+
   public getUser(): any {
     const user = localStorage.getItem(USER_KEY);
     if (user) {

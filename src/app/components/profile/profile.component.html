@@ -15,10 +15,21 @@
       <button type="submit">Update name</button>
     </form>
     <br />
-    <br />
-    <form [formGroup]="fileForm" (ngSubmit)="uploadFile()">
-      <input type="file" formControlName="file" />
-      <button type="submit">Upload File</button>
-    </form>
+  </div>
+  <div>
+
+    <input type="file" class="file-input"
+           (change)="onFileSelected($event)" #fileUpload>
+
+    <div class="file-upload">
+
+      {{fileName || "No file uploaded yet."}}
+
+      <button style="margin-top: 20px" mat-mini-fab color="primary" class="upload-btn"
+              (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+
   </div>
 </div>

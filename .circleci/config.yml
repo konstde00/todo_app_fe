@@ -32,7 +32,7 @@ jobs:
           command: |
             echo "export const environment = {
               production: '${IS_FE_PRODUCTION_MODE_ENABLED}',
-              apiBaseUrl: '${API_BASE_URL}',
+              apiHost: '${API_BASE_URL}',
               googleAnalyticsApiKey: '${GOOGLE_ANALYTICS_API_KEY}'
             };" > << parameters.env_file_name >>
       - run:

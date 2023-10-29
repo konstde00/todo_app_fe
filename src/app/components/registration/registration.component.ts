@@ -11,7 +11,7 @@ import {StorageService} from "@app/src/app/services/storage.service";
 })
 export class RegistrationComponent {
 
-  public username: string = "";
+  public email: string = "";
   public password: string = "";
 
   constructor(private userService: UserService,
@@ -23,7 +23,7 @@ export class RegistrationComponent {
 
   onSubmit() {
 
-    this.userService.register(this.username, this.password)
+    this.userService.register(this.email, this.password)
       .subscribe(
         (data) => {
           this.storageService.saveUser(data);

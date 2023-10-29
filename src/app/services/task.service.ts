@@ -10,7 +10,7 @@ import {environment} from "@app/src/environments/environment";
 @Injectable()
 export class TaskService implements OnInit {
 
-  apiUrl = environment.apiUrl;
+  apiHost = environment.apiHost;
 
   constructor(private http: HttpClient) {
   }
@@ -22,35 +22,35 @@ export class TaskService implements OnInit {
 
   getTasks(status: string =  "NOT_STARTED", currentPage: number, pageSize: number): Observable<PaginatedTasks> {
 
-    return this.http.get<PaginatedTasks>(this.apiUrl + "/api/tasks?status=" + status + "&pageNumber=" + currentPage + "&pageSize=" + pageSize);
+    return this.http.get<PaginatedTasks>(this.apiHost + "/api/tasks?status=" + status + "&pageNumber=" + currentPage + "&pageSize=" + pageSize);
   }
 
   updateTitle(id: number, title: string) {
-    return this.http.patch(this.apiUrl + "/api/tasks/" + id, {
+    return this.http.patch(this.apiHost + "/api/tasks/" + id, {
       title: title
     });
   }
 
   updateDescription(id: number, description: string) {
-    return this.http.patch(this.apiUrl + "/api/tasks/" + id, {
+    return this.http.patch(this.apiHost + "/api/tasks/" + id, {
       description: description
     });
   }
 
   updateStatus(id: number, status: string) {
-    return this.http.patch(this.apiUrl + "/api/tasks/" + id, {
+    return this.http.patch(this.apiHost + "/api/tasks/" + id, {
       status: status
     });
   }
 
   updatePriority(id: number, priority: string) {
-    return this.http.patch(this.apiUrl + "/api/tasks/" + id, {
+    return this.http.patch(this.apiHost + "/api/tasks/" + id, {
       priority: priority
     });
   }
 
   updatePosition(id: number, status: string, position: number) {
-    return this.http.patch(this.apiUrl + "/api/tasks/" + id, {
+    return this.http.patch(this.apiHost + "/api/tasks/" + id, {
       status: status,
       position: position
     }).subscribe();
@@ -66,6 +66,6 @@ export class TaskService implements OnInit {
   addTaskToList(name: string, description: string, priority:string, status: string) {
     const newTask = new TaskModel(name, description, TaskPriorityEnum[priority as keyof typeof TaskPriorityEnum],
       TaskStatusEnum[status as keyof typeof TaskStatusEnum]);
-    return this.http.post(this.apiUrl + "/api/tasks", newTask);
+    return this.http.post(this.apiHost + "/api/tasks", newTask);
   }
 }

@@ -7,3 +7,7 @@
     width: 8em;
     cursor: pointer;
 }
+
+.file-input {
+  display: none;
+}

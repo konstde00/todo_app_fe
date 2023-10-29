@@ -15,7 +15,7 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  public username: string = "";
+  public email: string = "";
   public password: string = "";
 
   constructor(
@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
-    this.socialAuthService.authState.subscribe((user) => {
+    this.socialAuthService.authState.subscribe((user: SocialUser) => {
       const responsePayload = this.decodeJWTToken(user.idToken);
+      //@ts-ignore
+      responsePayload.imageUrl = user.photoUrl == null ? user.picture : user.photoUrl;
       responsePayload.token = user.idToken;
       this.storageService.saveUser(responsePayload);
       this.userService.syncWithIdp(user.idToken).subscribe(
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    this.authService.login(this.username, this.password)
+    this.authService.login(this.email, this.password)
       .subscribe(
         (data) => {
           console.log(data);

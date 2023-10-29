@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {StorageService} from "@app/src/app/services/storage.service";
 import {FeatureFlagEnum} from "@app/src/app/models/feature-flags.model";
+import {environment} from "@app/src/environments/environment";
 
 @Injectable()
 export class AuthService {
@@ -10,9 +11,9 @@ export class AuthService {
               private storageService: StorageService) {
   }
 
-  login(username: String, password: String ) {
-    return this.http.post("http://localhost:8080/api/authenticate/email", {
-      username: username,
+  login(email: String, password: String ) {
+    return this.http.post(`${environment.apiHost}/api/authenticate/email`, {
+      email: email,
       password: password,
       rememberMe: true
     });

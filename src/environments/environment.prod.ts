@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   googleAnalyticsApiKey: 'api-key',
-  apiUrl: 'test-api-url',
+  apiHost: 'test-api-url',
 };

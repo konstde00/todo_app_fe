@@ -10,8 +10,8 @@
   <h1>Login</h1>
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" [(ngModel)]="username" name="username" id="username" required/>
+      <label for="email">Email</label>
+      <input type="email" [(ngModel)]="email" name="email" id="email" required/>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
@@ -22,7 +22,6 @@
     </div>
   </form>
 
-  <!-- Add the "Forgot password?" link here -->
   <div class="form-group">
     <a href="password-reset/init">Forgot password?</a>
   </div>
