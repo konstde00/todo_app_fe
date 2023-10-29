@@ -12,6 +12,7 @@ export class AuthService {
   }
 
   login(email: String, password: String ) {
+    console.log("Api url: " + environment.apiHost)
     return this.http.post(`${environment.apiHost}/api/authenticate/email`, {
       email: email,
       password: password,
