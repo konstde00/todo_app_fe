@@ -13,7 +13,7 @@ export class AuthService {
 
   login(email: String, password: String ) {
     console.log("Api url: " + environment.apiHost)
-    return this.http.post(`staging-todo-app-api-ext-9647-282134744.us-east-1.elb.amazonaws.com:80/api/authenticate/email`, {
+    return this.http.post(`http://staging-todo-app-api-ext-9647-282134744.us-east-1.elb.amazonaws.com:80/api/authenticate/email`, {
       email: email,
       password: password,
       rememberMe: true
