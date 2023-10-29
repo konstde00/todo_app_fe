@@ -33,7 +33,7 @@ jobs:
           name: Build Angular App
           command: |
             npm install -g @angular/cli@16
-            ng build --configuration << parameters.ng_configuration_name >>
+            ng build
       - persist_to_workspace:
           root: .
           paths:
