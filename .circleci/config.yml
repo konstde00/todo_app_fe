@@ -33,7 +33,7 @@ jobs:
           name: Build Angular App
           command: |
             npm install -g @angular/cli@16
-            ng build
+            ng build --configuration=<< parameters.ng_configuration_name >>
       - persist_to_workspace:
           root: .
           paths:
@@ -83,7 +83,7 @@ workflows:
       - build:
           name: Build
           env_file_name: ./src/environments/environment.staging.ts
-          ng_configuration_name: production
+          ng_configuration_name: staging
           requires:
             - deploy to staging?
       - deploy:
