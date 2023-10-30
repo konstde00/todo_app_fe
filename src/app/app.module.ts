@@ -44,6 +44,7 @@ import { PasswordResetInitComponent } from '@app/src/app/components/password-res
 import { PasswordResetFinishComponent } from '@app/src/app/components/password-reset-finish/password-reset-finish.component';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
+import {environment} from "@app/src/environments/environment";
 
 @NgModule({
   declarations: [
@@ -106,9 +107,7 @@ import {MatButtonModule} from "@angular/material/button";
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '116154229086-6i9qgcthsq1bbl2f5pbcfgejek6bbdul.apps.googleusercontent.com'
-            )
+            provider: new GoogleLoginProvider(environment.googleClientId)
           }
         ],
         onError: (err) => {

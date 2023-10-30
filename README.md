@@ -21,6 +21,10 @@ This README provides an overview of the tasks completed within the current proje
 - Created a [Dockerfile](Dockerfile) to build a docker image for the application.
 - Command to build the image: `docker build -t todo-app-fe .`
 
+## C9 (Integration with analytics services)
+- Integrated the application with Google Analytics.
+- Google Analytics configuration: [index.html](src/index.html)
+
 ### C12 (2do-list)
 - Created a to-do list component, which is used to display the list of tasks.
 - Component: [ListComponent](src/app/components/list/list.component.ts)
