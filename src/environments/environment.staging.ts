@@ -2,6 +2,6 @@ import {IEnv} from "@app/src/environments/environment.helpers";
 
 export const environment: IEnv = {
   production: true,
-  apiHost: 'http://staging-todo-app-api-ext-9647-282134744.us-east-1.elb.amazonaws.com:80',
+  apiHost: 'staging.todo-app.konstde00.com',
   googleAnalyticsApiKey: 'G-THHWZZVRF3',
 };
