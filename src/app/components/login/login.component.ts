@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
@@ -9,6 +9,7 @@ import {UserService} from "@app/src/app/services/user.service";
 import {catchError} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {environment} from "@app/src/environments/environment";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: "app-login",
@@ -16,11 +17,17 @@ import {environment} from "@app/src/environments/environment";
   styleUrls: ["./login.component.css"],
 })
 export class LoginComponent implements OnInit {
-  public email: string = "";
+
+  public saving: boolean = false;
+
   public password: string = "";
 
+  email = new FormControl('', [Validators.required,
+    Validators.pattern('[a-zA-Z0-9._-]+@([a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}|localhost)')
+  ]);
+  @ViewChild('validEmail') validEmail: any;
+
   constructor(
-    private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
     private authService: AuthService,
@@ -51,15 +58,18 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    this.authService.login(this.email, this.password)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.storageService.saveUser(data);
-          this.router.navigate(['tasks'])
-        },
-        (error) => {
-          this.toastr.error(error.error.message, 'Error', {});
-        });
+    if (this.email.value !== null) {
+
+      this.authService.login(this.email.value, this.password)
+        .subscribe(
+          (data) => {
+            console.log(data);
+            this.storageService.saveUser(data);
+            this.router.navigate(['tasks'])
+          },
+          (error) => {
+            this.toastr.error(error.error.message, 'Error', {});
+          });
+    }
   }
 }

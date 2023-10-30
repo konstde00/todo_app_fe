@@ -5,7 +5,10 @@
         <li class="navbar-item" *ngIf="isAccessToAnalyticsAllowed()"><a routerLink="/analytics">Analytics</a></li>
         <li class="navbar-item" *ngIf="isAccessToAdminPanelAllowed()"><a routerLink="/admin">Admin panel</a></li>
         <li class="navbar-item">
-          <mat-button-toggle style="height: 35px; text-align: center" routerLink="/login" (click)="logout()">Logout</mat-button-toggle>
+          <button
+            mat-raised-button
+            class="mat-white-button green-button"
+            style="height: 35px; text-align: center" routerLink="/login" (click)="logout()">Logout</button>
         </li>
     </ul>
 </nav>

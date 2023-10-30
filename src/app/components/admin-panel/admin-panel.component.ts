@@ -4,11 +4,12 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {TaskModel} from "@app/src/app/models/task.model";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
-import {Subject} from "rxjs";
+import {debounceTime, Subject} from "rxjs";
 import {UserModel} from "@app/src/app/models/user.model";
 import {DropdownItem} from "@app/src/app/models/dropdown-item.model";
 import {MatSelect} from "@angular/material/select";
 import {MatOptionSelectionChange} from "@angular/material/core";
+import {isBoolean} from "lodash-es";
 
 const ELEMENT_DATA: UserModel[] = [];
 
@@ -29,8 +30,10 @@ export class AdminPanelComponent implements OnInit {
   @ViewChild(MatSelect) matSelect: MatSelect;
 
   featureFlags: DropdownItem[] = [
-      {value: "0", viewValue: 'Analytics'},
+      {value: 0, viewValue: 'Analytics'},
   ];
+
+  private debouncedUpdate: Subject<any> = new Subject();
 
   usersChanged = new Subject<void>();
 
@@ -40,6 +43,16 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit(): void {
 
       this.loadUsers();
+
+    this.debouncedUpdate
+      .pipe(debounceTime(500)) // Adjust the debounce time as needed (e.g., 500 milliseconds)
+      .subscribe(data => {
+        this.updateAvailableFeatures(data.event, data.element);
+      });
+  }
+
+  onSelectionChange(event: any, element: any) {
+    this.debouncedUpdate.next({ event, element });
   }
 
   loadUsers(search: string = "") {

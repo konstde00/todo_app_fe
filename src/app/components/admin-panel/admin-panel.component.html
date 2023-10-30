@@ -36,7 +36,7 @@
             <mat-header-cell *matHeaderCellDef> Available features </mat-header-cell>
             <mat-cell *matCellDef="let element" >
                 <mat-select [(value)]="element.featureFlags" multiple >
-                    <mat-option *ngFor="let featureFlag of featureFlags" [value]="featureFlag.value" (onSelectionChange)="updateAvailableFeatures($event, element)">
+                    <mat-option *ngFor="let featureFlag of featureFlags" [value]="featureFlag.value" (onSelectionChange)="onSelectionChange($event, element)">
                         {{featureFlag.viewValue}}
                     </mat-option>
                 </mat-select>

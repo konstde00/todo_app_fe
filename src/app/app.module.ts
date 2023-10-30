@@ -42,6 +42,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { RegistrationComponent } from '@app/src/app/components/registration/registration.component';
 import { PasswordResetInitComponent } from '@app/src/app/components/password-reset-init/password-reset-init.component';
 import { PasswordResetFinishComponent } from '@app/src/app/components/password-reset-finish/password-reset-finish.component';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -85,6 +87,8 @@ import { PasswordResetFinishComponent } from '@app/src/app/components/password-r
     CdkDrag,
     MatSelectModule,
     MatButtonToggleModule,
+    MatProgressBarModule,
+    MatButtonModule,
   ],
   providers: [
     AuthService,
