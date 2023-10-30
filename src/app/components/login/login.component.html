@@ -20,7 +20,7 @@
         placeholder="Email  Address"
         [formControl]="email">
       <mat-error
-        *ngIf="email.errors">
+        *ngIf="email.touched && email.errors">
         Please enter a valid email address
       </mat-error>
     </div>
