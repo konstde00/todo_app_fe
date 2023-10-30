@@ -89,7 +89,7 @@ export class ProfileComponent implements OnInit {
 
       formData.append("photo", file);
 
-      this.http .post(`${environment.apiHost}/api/users/v1/upload`, formData)
+      this.http.patch(`${environment.apiHost}/api/users/v1/profile/picture`, formData)
         .subscribe(
         (res) => {
           //@ts-ignore

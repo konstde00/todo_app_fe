@@ -23,7 +23,7 @@ export class UserService implements OnInit {
 
   getUsers(search: string =  "", currentPage: number = 0, pageSize: number = 10): Observable<PaginatedUsers> {
 
-    return this.http.get<PaginatedUsers>(`${environment.apiHost}/api/admin/users?search=` + search
+    return this.http.get<PaginatedUsers>(`${environment.apiHost}/api/admin/v1/users?search=` + search
         + "&pageNumber=" + currentPage + "&pageSize=" + pageSize);
   }
 
@@ -33,7 +33,7 @@ export class UserService implements OnInit {
   }
 
   register(email: string, password: string) {
-    return this.http.post(environment.apiHost + "/api/admin/users", {
+    return this.http.post(environment.apiHost + "/api/admin/v1/users", {
       email: email,
       password: password
     });

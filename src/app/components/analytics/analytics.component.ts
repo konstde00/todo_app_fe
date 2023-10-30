@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AnalyticsService} from "@app/src/app/services/analytics.service";
-import {BehaviorSubject, forkJoin} from "rxjs";
 import {PercentageByStatus} from "@app/src/app/models/percentage-by-status.model";
 import {ChartOptions} from "chart.js";
 import {StatusByPriority} from "@app/src/app/models/status-by-priority.model";

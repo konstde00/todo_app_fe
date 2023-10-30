@@ -1,27 +1,45 @@
-# TodoAppFe
+# Project Tasks Overview
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+This README provides an overview of the tasks completed within the current project, along with brief descriptions for each task code.
 
-## Development server
+## Task List
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### C1 (MVC)
+- Implemented the MVC architecture for the application.
+- Model: [Task](src/app/models/task.model.ts)
+- View: [ListComponent](src/app/components/list/list.component.ts)
+- Controller: [TaskService](src/app/services/task.service.ts)
 
-## Code scaffolding
+### C2 (Cloud)
+- Deployed the application to S3 bucket, using static website hosting feature.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### C3 (CI/CD)
+- Created a CI/CD workflows using CircleCI.
+- CircleCI configuration file is available [here](.circleci/config.yml)
 
-## Build
+### C4 (Containerisation)
+- Created a [Dockerfile](Dockerfile) to build a docker image for the application.
+- Command to build the image: `docker build -t todo-app-fe .`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### C12 (2do-list)
+- Created a to-do list component, which is used to display the list of tasks.
+- Component: [ListComponent](src/app/components/list/list.component.ts)
 
-## Running unit tests
+### C16 (OAuth2)
+- Implemented OAuth2 authentication using Auth0.
+- SocialAuthServiceConfig: [app.module.ts](src/app/app.module.ts)
+- AuthenticationService: [auth.service.ts](src/app/services/authentication.service.ts)
+- Component: [LoginComponent](src/app/components/login/login.component.ts)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### C19 (Static content)
+- Created a user-profile page to display the user details, along with the profile picture.
+- Component: [ProfileComponent](src/app/components/profile/profile.component.ts)
 
-## Running end-to-end tests
+### F1 (Stats visualization)
+- Ng2-charts library to visualize statistics about the tasks completion status.
+- Component: [AnalyticsComponent](src/app/components/analytics/analytics.component.ts)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### F3 (Drag-n-drop animations)
+- Angular is used to implement drag-n-drop animations for the to-do list.
+- Component: [ListComponent](src/app/components/list/list.component.ts)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

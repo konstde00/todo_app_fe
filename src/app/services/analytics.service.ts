@@ -14,10 +14,10 @@ export class AnalyticsService {
     }
 
     getPercentageByStatus(): Observable<PercentageByStatus> {
-        return this.http.get<PercentageByStatus>(`${environment.apiHost}/api/tasks/analytics/percentage-by-status`);
+        return this.http.get<PercentageByStatus>(`${environment.apiHost}/api/tasks/v1/analytics/percentage-by-status`);
     }
 
     getStatusByPriority(): Observable<StatusByPriority> {
-        return this.http.get<StatusByPriority>(`${environment.apiHost}/api/tasks/analytics/status-by-priority`);
+        return this.http.get<StatusByPriority>(`${environment.apiHost}/api/tasks/v1/analytics/status-by-priority`);
     }
 }

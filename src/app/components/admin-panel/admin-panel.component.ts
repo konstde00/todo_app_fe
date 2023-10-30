@@ -57,8 +57,6 @@ export class AdminPanelComponent implements OnInit {
 
   loadUsers(search: string = "") {
 
-      console.log("paginator: " + this.paginator);
-
     const pageSize = (this.paginator == undefined) ? 10 : this.paginator.pageSize;
     const pageIndex =  (this.paginator == undefined) ? 0 : this.paginator.pageIndex;
 
