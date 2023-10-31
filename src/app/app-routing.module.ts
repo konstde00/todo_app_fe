@@ -18,6 +18,7 @@ import {
   PasswordResetFinishComponent
 } from "@app/src/app/components/password-reset-finish/password-reset-finish.component";
 import {TaskComponent} from "@app/src/app/components/task/task.component";
+import {WasmDemoComponent} from "@app/src/app/components/wasm-demo/wasm-demo.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthenticatedGuard, AnalyticsGuard]},
   { path: 'admin', component: AdminPanelComponent, canActivate: [AuthenticatedGuard, AdminPanelGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthenticatedGuard] },
+  { path: 'wasm-demo', component: WasmDemoComponent },
   { path: 'error', component: ErrorComponent, canActivate: [AuthenticatedGuard] },
   { path: '', component: LoginComponent },
 ];

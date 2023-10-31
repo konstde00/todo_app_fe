@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "wasm": "node scripts/process-c-code.js && node scripts/memorize.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"

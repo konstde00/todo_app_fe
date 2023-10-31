@@ -1,0 +1,13 @@
+<section>
+  <div class="container">
+    <h1> Logger</h1>
+    <p>
+      Begin exploring the page by clicking in any random sequence. This demonstration involves directly linking window clicks within the C code through Emscripten's library. The C code utilizes the <em>printf</em> function, which I've modified to append elements to a list instead of displaying them in the console (its standard function).
+    </p>
+    <div class="demo-contents">
+      <ul>
+        <li *ngFor="let logItem of logItems">{{ logItem }}</li>
+      </ul>
+    </div>
+  </div>
+</section>

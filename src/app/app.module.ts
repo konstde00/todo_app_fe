@@ -47,6 +47,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {environment} from "@app/src/environments/environment";
 import { ToastContainerComponent } from '@app/src/app/components/toast-container/toast-container.component';
 import {NgbDropdown, NgbDropdownAnchor, NgbDropdownItem, NgbDropdownMenu, NgbToast} from "@ng-bootstrap/ng-bootstrap";
+import { WasmDemoComponent } from '@app/src/app/components/wasm-demo/wasm-demo.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import {NgbDropdown, NgbDropdownAnchor, NgbDropdownItem, NgbDropdownMenu, NgbToa
     RegistrationComponent,
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
-    ToastContainerComponent
+    ToastContainerComponent,
+    WasmDemoComponent
   ],
   imports: [
     BrowserModule,
