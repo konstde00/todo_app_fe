@@ -29,6 +29,10 @@ This README provides an overview of the tasks completed within the current proje
 - Created a to-do list component, which is used to display the list of tasks.
 - Component: [ListComponent](src/app/components/list/list.component.ts)
 
+### F3 (Drag-n-drop animations)
+- Angular is used to implement drag-n-drop animations for the to-do list.
+- Component: [ListComponent](src/app/components/list/list.component.ts)
+
 ### C16 (OAuth2)
 - Implemented OAuth2 authentication using Auth0.
 - SocialAuthServiceConfig: [app.module.ts](src/app/app.module.ts)
@@ -43,7 +47,7 @@ This README provides an overview of the tasks completed within the current proje
 - Ng2-charts library to visualize statistics about the tasks completion status.
 - Component: [AnalyticsComponent](src/app/components/analytics/analytics.component.ts)
 
-### F3 (Drag-n-drop animations)
-- Angular is used to implement drag-n-drop animations for the to-do list.
-- Component: [ListComponent](src/app/components/list/list.component.ts)
-
+### C6 Bootstrap (Landing Page)
+- Created a landing page for the task using Ng-Bootstrap.
+- Component: [TaskComponent](src/app/components/task/task.component.ts)
+- Also created a toast notification component using Ng-Bootstrap: [ToastContainerComponent](src/app/components/toast-container/toast-container.component.ts)

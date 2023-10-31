@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {TaskStatusEnum} from "@app/src/app/models/task-status-enum.model";
 import {TaskService} from "@app/src/app/services/task.service";
 import {TaskPriorityEnum} from "@app/src/app/models/task-priority-enum.model";
-import {ToastrService} from "ngx-toastr";
 import {catchError, map} from "rxjs";
+import {AppToastService} from "@app/src/app/services/toast.service";
 
 @Component({
   selector: 'app-create-task',
@@ -18,7 +18,7 @@ export class CreateTaskComponent implements OnInit {
   status: TaskStatusEnum = TaskStatusEnum.NOT_STARTED;
 
   constructor(taskService: TaskService,
-              private toastr: ToastrService) {
+              private toastr: AppToastService) {
     this.taskService = taskService;
   }
 
@@ -34,11 +34,11 @@ export class CreateTaskComponent implements OnInit {
     this.taskService.addTaskToList(task.name, task.description, task.priority, task.status)
         .pipe(
            map(() => {
-               this.toastr.success('', 'Task has been successfully created');
+               this.toastr.showSuccess('Success', 'Task has been successfully created');
            }),
             // @ts-ignore
             catchError((error) => {
-            this.toastr.error(error.error.message, 'Error', {});
+            this.toastr.showError('Error', error.error.message);
         }))
         .subscribe();
 

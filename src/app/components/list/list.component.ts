@@ -1,5 +1,5 @@
 import {Component, OnInit, OnDestroy, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {TaskModel} from "@app/src/app/models/task.model";
 import {TaskService} from "@app/src/app/services/task.service";
@@ -11,6 +11,7 @@ import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MatPaginator, PageEvent} from "@angular/material/paginator";
 import {DropdownItem} from "@app/src/app/models/dropdown-item.model";
+import {StorageService} from "@app/src/app/services/storage.service";
 
 const ELEMENT_DATA: TaskModel[] = [];
 
@@ -94,6 +95,8 @@ export class ListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   constructor(activatedRoute: ActivatedRoute,
+              private router: Router,
+              private storageService: StorageService,
               taskService: TaskService) {
     this.activatedRoute = activatedRoute;
     this.taskService = taskService;
@@ -133,5 +136,11 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
     this.subscription.unsubscribe();
+  }
+
+  onClick(task: TaskModel) {
+
+    this.storageService.saveTask(task);
+    this.router.navigate(['/tasks-landing/' + task.id]);
   }
 }

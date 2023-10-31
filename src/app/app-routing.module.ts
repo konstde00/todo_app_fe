@@ -17,6 +17,7 @@ import {PasswordResetInitComponent} from "@app/src/app/components/password-reset
 import {
   PasswordResetFinishComponent
 } from "@app/src/app/components/password-reset-finish/password-reset-finish.component";
+import {TaskComponent} from "@app/src/app/components/task/task.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
       { path: ':status', component: ListComponent, canActivate: [AuthenticatedGuard]}
     ]
   },
+  { path: 'tasks-landing/:taskId', component: TaskComponent, canActivate: [AuthenticatedGuard] },
   { path: 'new-task', component: CreateTaskComponent, canActivate: [AuthenticatedGuard] },
   { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthenticatedGuard, AnalyticsGuard]},
   { path: 'admin', component: AdminPanelComponent, canActivate: [AuthenticatedGuard, AdminPanelGuard]},

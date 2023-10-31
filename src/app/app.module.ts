@@ -45,6 +45,8 @@ import { PasswordResetFinishComponent } from '@app/src/app/components/password-r
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
 import {environment} from "@app/src/environments/environment";
+import { ToastContainerComponent } from '@app/src/app/components/toast-container/toast-container.component';
+import {NgbDropdown, NgbDropdownAnchor, NgbDropdownItem, NgbDropdownMenu, NgbToast} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,8 @@ import {environment} from "@app/src/environments/environment";
     AdminPanelComponent,
     RegistrationComponent,
     PasswordResetInitComponent,
-    PasswordResetFinishComponent
+    PasswordResetFinishComponent,
+    ToastContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,11 @@ import {environment} from "@app/src/environments/environment";
     MatButtonToggleModule,
     MatProgressBarModule,
     MatButtonModule,
+    NgbToast,
+    NgbDropdownAnchor,
+    NgbDropdown,
+    NgbDropdownMenu,
+    NgbDropdownItem,
   ],
   providers: [
     AuthService,

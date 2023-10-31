@@ -8,19 +8,19 @@
 
     <ng-container matColumnDef="title">
       <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let element" (click)="onClick(element)">
         {{element.title}}
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      <mat-cell *matCellDef="let element" (click)="onClick(element)"> {{element.description}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="priority">
       <mat-header-cell *matHeaderCellDef> Priority </mat-header-cell>
-      <mat-cell *matCellDef="let element" >
+      <mat-cell *matCellDef="let element" (click)="onClick(element)">
         <mat-select [(value)]="element.priority">
           <mat-option *ngFor="let priority of priorities" [value]="priority.value" (onSelectionChange)="updatePriority($event, element)">
             {{priority.viewValue}}
@@ -31,7 +31,7 @@
 
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-      <mat-cell *matCellDef="let element" >
+      <mat-cell *matCellDef="let element" (click)="onClick(element)">
         <mat-select [(value)]="element.status">
           <mat-option *ngFor="let status of statuses" [value]="status.value" (onSelectionChange)="updateStatus($event, element)">
             {{status.viewValue}}

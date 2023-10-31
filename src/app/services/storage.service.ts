@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 const USER_KEY = 'auth';
+const TASK_KEY = 'task';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class StorageService {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
   }
 
+  public saveTask(task: any): void {
+    localStorage.removeItem(TASK_KEY);
+    localStorage.setItem(TASK_KEY, JSON.stringify(task));
+  }
+
   public updateImageUrl(imageUrl: string): void {
     const user = this.getUser();
     user.imageUrl = imageUrl;
@@ -27,6 +33,15 @@ export class StorageService {
     const user = localStorage.getItem(USER_KEY);
     if (user) {
       return JSON.parse(user);
+    }
+
+    return {};
+  }
+
+  public getTask(): any {
+    const task = localStorage.getItem(TASK_KEY);
+    if (task) {
+      return JSON.parse(task);
     }
 
     return {};

@@ -1,1 +1,48 @@
-<p>task works!</p>
+<app-navbar></app-navbar>
+
+<div class="container mt-5">
+  <div class="card">
+    <div class="card-header">
+      <h3 style="text-align: center">{{ task.title }}</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Description:</strong> {{ task.description }}</p>
+      <div class="mb-3">
+        <div class="d-inline-block me-3" ngbDropdown #priorityDrop="ngbDropdown" style="display: block">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="priorityDropdown"
+            ngbDropdownAnchor
+            (focus)="priorityDrop.open()"
+          >
+            Task Priority
+          </button>
+          <div ngbDropdownMenu aria-labelledby="priorityDropdown">
+            <button ngbDropdownItem>Low</button>
+            <button ngbDropdownItem>High</button>
+            <button ngbDropdownItem>Medium</button>
+          </div>
+        </div>
+
+        <div class="d-inline-block" ngbDropdown #statusDrop="ngbDropdown">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            id="statusDropdown"
+            ngbDropdownAnchor
+            (focus)="statusDrop.open()"
+          >
+            Task Status
+          </button>
+          <div ngbDropdownMenu aria-labelledby="statusDropdown">
+            <button ngbDropdownItem>Not started</button>
+            <button ngbDropdownItem>In progress</button>
+            <button ngbDropdownItem>Completed</button>
+            <button ngbDropdownItem>Cancelled</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

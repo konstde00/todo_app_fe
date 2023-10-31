@@ -20,6 +20,8 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@ng-bootstrap/ng-bootstrap": "^15.1.2",
+    "@angular/localize": "^16.2.11",
     "@types/lodash-es": "^4.14.149",
     "ng-redux": "^3.3.0",
     "ng2-charts": "^3",
