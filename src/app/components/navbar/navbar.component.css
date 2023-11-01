@@ -4,7 +4,7 @@
     align-items: center;  /* Vertically center items in the navbar */
     background-color: #333; /* Set a background color for the navbar */
     padding: 10px;       /* Add padding to create space around the buttons */
-    height: 50px;
+    height: 75px;
 }
 
 .navbar-list {
