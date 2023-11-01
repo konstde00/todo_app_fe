@@ -48,6 +48,7 @@ import {environment} from "@app/src/environments/environment";
 import { ToastContainerComponent } from '@app/src/app/components/toast-container/toast-container.component';
 import {NgbDropdown, NgbDropdownAnchor, NgbDropdownItem, NgbDropdownMenu, NgbToast} from "@ng-bootstrap/ng-bootstrap";
 import { WasmDemoComponent } from '@app/src/app/components/wasm-demo/wasm-demo.component';
+import { SharedDrawingSpaceComponent } from '@app/src/app/components/shared-drawing-space/shared-drawing-space.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { WasmDemoComponent } from '@app/src/app/components/wasm-demo/wasm-demo.c
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     ToastContainerComponent,
-    WasmDemoComponent
+    WasmDemoComponent,
+    SharedDrawingSpaceComponent
   ],
   imports: [
     BrowserModule,

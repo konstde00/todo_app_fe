@@ -19,6 +19,7 @@ import {
 } from "@app/src/app/components/password-reset-finish/password-reset-finish.component";
 import {TaskComponent} from "@app/src/app/components/task/task.component";
 import {WasmDemoComponent} from "@app/src/app/components/wasm-demo/wasm-demo.component";
+import {SharedDrawingSpaceComponent} from "@app/src/app/components/shared-drawing-space/shared-drawing-space.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPanelComponent, canActivate: [AuthenticatedGuard, AdminPanelGuard]},
   { path: 'profile', component: ProfileComponent, canActivate: [AuthenticatedGuard] },
   { path: 'wasm-demo', component: WasmDemoComponent },
+  { path: 'drawing', component: SharedDrawingSpaceComponent },
   { path: 'error', component: ErrorComponent, canActivate: [AuthenticatedGuard] },
   { path: '', component: LoginComponent },
 ];
