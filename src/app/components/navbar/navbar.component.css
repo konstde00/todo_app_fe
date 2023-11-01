@@ -16,8 +16,9 @@
 }
 
 .navbar-item {
-    margin-right: 40px;   /* Add spacing between buttons (adjust as needed) */
+    margin-right: 40px;
     display: inline;
+    width: 40px;
 }
 
 .navbar-item a {
